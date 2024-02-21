@@ -29,6 +29,24 @@ class Donor(Base):
     def __repr__(self):
         return f"<Donor(id={self.id}, name='{self.name}', blood_type='{self.blood_type}', allergies='{self.allergies}', diseases='{self.diseases}', contact_number='{self.contact_number}')>"
     
+    @classmethod
+    def create_donor(cls, session):
+    
+        name = input("Enter donor's name: ")
+        blood_type = input("Enter donor's blood type: ")
+        allergies = input("Does the donor have allergies? (yes/no): ")
+        diseases = input("Does the donor have diseases? (yes/no): ")
+        contact_number = input("Enter donor's contact number: ")
+
+        new_donor = Donor(name=name, blood_type=blood_type, allergies=allergies, diseases=diseases, contact_number=contact_number)
+
+        session.add(new_donor)
+        session.commit()
+
+        print("New donor added successfully")
+        return new_donor
+
+    
     @staticmethod
     def delete_by_id(session, donor_id):
         
@@ -39,6 +57,16 @@ class Donor(Base):
             print(f"Donor with ID {donor_id} deleted successfully")
         else:
             print(f"Donor with ID {donor_id} not found")
+
+    @classmethod
+    def get_all_donors(cls, session):
+        all_donors =  session.query(cls).all()
+        if all_donors:
+            print("All donors:")
+            for donor in all_donors:
+                print(donor)
+        else:
+            print("No donors found in the database")
 
 
 class Receiver(Base):
@@ -53,6 +81,23 @@ class Receiver(Base):
 
     def __repr__(self):
         return f"<Receiver(id={self.id}, name='{self.name}', blood_type_requirement='{self.blood_type_requirement}', contact_number='{self.contact_number}')>"
+    
+    
+    @classmethod
+    def create_receiver(cls, session):
+    
+        name = input("Enter receiver's name: ")
+        blood_type_requirement = input("Enter receiver's blood type requirement: ")
+        contact_number = input("Enter receiver's contact number: ")
+
+        new_receiver = Receiver(name=name, blood_type_requirement=blood_type_requirement, contact_number=contact_number)
+
+        session.add(new_receiver)
+        session.commit()
+
+        print("New receiver added successfully")
+        return new_receiver
+
     
     
     @staticmethod
@@ -76,5 +121,15 @@ class Receiver(Base):
             print(f"Receiver with ID {receiver_id} deleted successfully")
         else:
             print(f"Receiver with ID {receiver_id} not found")
+
+    @classmethod
+    def get_all_receivers(cls, session):
+        all_receivers =  session.query(cls).all()
+        if all_receivers:
+            print("All receivers:")
+            for receiver in all_receivers:
+                print(receiver)
+        else:
+            print("No receivers found in the database")
     
     
