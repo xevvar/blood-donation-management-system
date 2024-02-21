@@ -22,7 +22,7 @@ For Testing purposes and interaction with the CLI
 - navigate to the lib directory and run python debug.py
 - To create donor: run Donor.create_donor(session) 
 - To create receiver; run  Receiver.create_receiver(session)
-- To search_donors_by_blood_type: run eceiver.search_donors_by_blood_type(session, <blood_type>)
+- To search_donors_by_blood_type: run Receiver.search_donors_by_blood_type(session, <blood_type>)
 - To get_all_donors: run Donor.get_all_donors(session)
 - To get all receivers: run Receiver.get_all_receivers(session)
 - To delete a donor: run Donor.delete_by_id(session, <donor_id>)
