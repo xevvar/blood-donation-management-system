@@ -6,8 +6,8 @@ This is a CLI application for blood donation management.
 
 Features
 
-Add Donors and their information
-Add Receivers and their information
+Add Donors and their information,
+Add Receivers and their information,
 Search for a specific blood_type
 
 Setup Instructions
